@@ -3,6 +3,7 @@ import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
 import getDisciplinas from "../../database/database";
 import { useEffect, useState } from "react";
+import ModalComponent from "../modal/Modal";
 
 interface Disciplina {
   id: string;
@@ -33,10 +34,12 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
     <C.BimestreContainer>
       <C.CardArea fluid="xl">
         <C.Name>{bimestre}</C.Name>
-        <C.LaunchButton>
-          Lançar Nota
-          <AiOutlinePlus />
-        </C.LaunchButton>
+        <ModalComponent bimestre={bimestre}>
+          <C.LaunchButton>
+            Lançar Nota
+            <AiOutlinePlus />
+          </C.LaunchButton>
+        </ModalComponent>
       </C.CardArea>
       <C.CardContainer fluid="xl">
         {disciplinas.length > 0 &&
