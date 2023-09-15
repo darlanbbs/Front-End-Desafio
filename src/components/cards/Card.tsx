@@ -1,11 +1,13 @@
+import { deletarAvaliacao } from "../../database/database";
 import DeleteIconComponent from "../icon/deleteIcon";
 import * as C from "./styles";
+import { getDisciplinas } from "../../database/database";
 
 type Props = {
   id: string;
   disciplina: string;
   nota: number;
-  onDelete: () => void;
+  onDelete: any;
   AiOutlineBarChart: any;
   criado_em: string;
 };
@@ -31,10 +33,21 @@ const Card = ({
   onDelete,
   AiOutlineBarChart,
   criado_em,
+  id,
 }: Props) => {
+  const handleDelete = async () => {
+    const resultado = await deletarAvaliacao(id);
+
+    if (resultado === "Disciplina deletada com sucesso!") {
+      onDelete(id);
+    }
+  };
+
+  console.log(id, disciplina, nota);
+
   return (
     <C.MiniCardContainer color={getBackgroundColor(disciplina)}>
-      <DeleteIconComponent onClick={onDelete} />
+      <DeleteIconComponent onClick={handleDelete} />
       <C.Title>{disciplina}</C.Title>
       <C.SubTitle>{criado_em}</C.SubTitle>
       <C.EndSection>

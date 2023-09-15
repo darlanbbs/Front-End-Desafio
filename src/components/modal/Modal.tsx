@@ -45,11 +45,14 @@ function ModalComponent(
       setBimestre(bimestre);
       setModal(false);
       const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
-      if (resultado === "Bimestre adicionado com sucesso!") {
+      console.log(resultado);
+      try {
         setNewValue((prevDisciplinas: Disciplina[]) => [
           ...prevDisciplinas,
-          { bimestre, disciplina, nota },
+          resultado,
         ]);
+      } catch (error) {
+        console.error("Erro ao adicionar avaliação:", error);
       }
     }
   };

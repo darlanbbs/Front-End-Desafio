@@ -1,9 +1,9 @@
 import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
-import { getDisciplinas } from "../../database/database";
-import { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
 import ModalComponent from "../modal/Modal";
+import { getDisciplinas } from "../../database/database";
 
 interface Disciplina {
   id: string;
@@ -16,9 +16,24 @@ interface Disciplina {
 const BimestreArea = ({ bimestre }: Disciplina) => {
   const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
 
-  function onDelete() {
-    console.log("teste");
-  }
+  const handleDelete = (id: string) => {
+    setDisciplinas((prevDisciplinas) =>
+      prevDisciplinas.filter((disciplina) => disciplina.id !== id)
+    );
+  };
+
+  useEffect(() => {
+    const fetchDisciplinas = async () => {
+      try {
+        const data = await getDisciplinas();
+        setDisciplinas(data);
+      } catch (error) {
+        console.error("Erro ao obter disciplinas:", error);
+      }
+    };
+
+    fetchDisciplinas();
+  }, []);
 
   return (
     <C.BimestreContainer>
@@ -45,7 +60,7 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
                 id={disciplinaItem.id}
                 nota={disciplinaItem.nota}
                 criado_em={disciplinaItem.criado_em}
-                onDelete={onDelete}
+                onDelete={handleDelete}
                 AiOutlineBarChart={AiOutlineBarChart}
               />
             </C.CardsArea>

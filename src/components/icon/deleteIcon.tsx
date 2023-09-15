@@ -1,7 +1,10 @@
+import { MouseEventHandler } from "react";
 import { AiFillDelete } from "react-icons/Ai";
 import styled from "styled-components";
 
-type Props = {};
+type Props = {
+  [x: string]: MouseEventHandler<HTMLDivElement> | undefined;
+};
 
 const DeleteIcon = styled.div`
   position: absolute;
@@ -15,7 +18,7 @@ const DeleteIcon = styled.div`
 
 const DeleteIconComponent = (props: Props) => {
   return (
-    <DeleteIcon>
+    <DeleteIcon onClick={props.onClick}>
       <AiFillDelete />
     </DeleteIcon>
   );
