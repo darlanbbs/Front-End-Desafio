@@ -13,6 +13,8 @@ interface Disciplina {
   disciplina: string;
   bimestre: string;
   nota: number;
+  criado_em: string;
+  id: string;
 }
 
 function ModalComponent(
@@ -39,14 +41,16 @@ function ModalComponent(
   };
 
   const handleConfirmClick = async () => {
-    setBimestre(bimestre);
-    setModal(false);
-    const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
-    if (resultado === "Bimestre adicionado com sucesso!") {
-      setNewValue((prevDisciplinas: Disciplina[]) => [
-        ...prevDisciplinas,
-        { bimestre, disciplina, nota },
-      ]);
+    if (bimestre !== null && disciplina !== null && nota !== null) {
+      setBimestre(bimestre);
+      setModal(false);
+      const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
+      if (resultado === "Bimestre adicionado com sucesso!") {
+        setNewValue((prevDisciplinas: Disciplina[]) => [
+          ...prevDisciplinas,
+          { bimestre, disciplina, nota },
+        ]);
+      }
     }
   };
 
