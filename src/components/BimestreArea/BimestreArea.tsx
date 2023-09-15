@@ -4,14 +4,6 @@ import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
 import getDisciplinas from "../../database/database";
 import { useEffect, useState } from "react";
 
-interface Props {
-  id: string;
-  disciplina: string;
-  nota: number;
-  criado_em: string;
-  bimestre: string;
-}
-
 interface Disciplina {
   id: string;
   disciplina: string;
@@ -20,14 +12,14 @@ interface Disciplina {
   criado_em: string;
 }
 
-const BimestreArea = ({ bimestre }: Props) => {
+const BimestreArea = ({ bimestre }: Disciplina) => {
   const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
 
   useEffect(() => {
     (async () => {
       const data = await getDisciplinas();
       const disciplinasFiltradas = data.filter(
-        (disciplinaItem) => disciplinaItem.bimestre === bimestre
+        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
       );
       setDisciplinas(disciplinasFiltradas);
     })();
