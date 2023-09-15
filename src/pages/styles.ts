@@ -8,6 +8,7 @@ export const Container = styled(C.Container)`
   justify-content: center;
   align-items: center;
   color: #fff;
+  flex-direction: column;
 `;
 
 export const CardArea = styled(C.Container)`
@@ -17,6 +18,7 @@ export const CardArea = styled(C.Container)`
   align-items: center;
   color: #fff;
   padding: 10px;
+  margin-bottom: 30px;
 `;
 
 export const LaunchButton = styled.button`
@@ -36,4 +38,13 @@ export const LaunchButton = styled.button`
 
 export const Name = styled.div`
   font-size: 1.2em;
+`;
+
+export const CardsArea = styled(C.Container)`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 10px;
 `;

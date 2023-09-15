@@ -4,8 +4,8 @@ type Props = {
   subject: string;
   grade: number;
   onDelete: () => void;
-  TrashIcon: React.ReactElement<SVGElement>;
-  AiOutlineBarChart: React.ReactElement<SVGElement>;
+  TrashIcon: any;
+  AiOutlineBarChart: any;
 };
 
 const getBackgroundColor = (subject: string) => {
@@ -39,7 +39,7 @@ const Card = ({
         <C.IconAndNote>
           <AiOutlineBarChart />
           {/* @ts-ignore */}
-          <Note grade={grade}>{grade}</Note>
+          <C.Note grade={grade}>{grade}</C.Note>
         </C.IconAndNote>
       </C.EndSection>
     </C.MiniCardContainer>
