@@ -1,7 +1,7 @@
 import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
-import getDisciplinas from "../../database/database";
+import { getDisciplinas } from "../../database/database";
 import { useEffect, useState } from "react";
 import ModalComponent from "../modal/Modal";
 
@@ -16,16 +16,6 @@ interface Disciplina {
 const BimestreArea = ({ bimestre }: Disciplina) => {
   const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
 
-  useEffect(() => {
-    (async () => {
-      const data = await getDisciplinas();
-      const disciplinasFiltradas = data.filter(
-        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
-      );
-      setDisciplinas(disciplinasFiltradas);
-    })();
-  }, [bimestre]);
-
   function onDelete() {
     console.log("teste");
   }
@@ -34,7 +24,11 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
     <C.BimestreContainer>
       <C.CardArea fluid="xl">
         <C.Name>{bimestre}</C.Name>
-        <ModalComponent bimestre={bimestre}>
+        <ModalComponent
+          bimestre={bimestre}
+          key={bimestre}
+          setNewValue={setDisciplinas}
+        >
           <C.LaunchButton>
             Lançar Nota
             <AiOutlinePlus />
@@ -46,6 +40,7 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
           disciplinas.map((disciplinaItem) => (
             <C.CardsArea key={disciplinaItem.id}>
               <Card
+                key={disciplinaItem.id}
                 disciplina={disciplinaItem.disciplina}
                 id={disciplinaItem.id}
                 nota={disciplinaItem.nota}

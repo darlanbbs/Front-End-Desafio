@@ -1,18 +1,36 @@
-import React, { useState } from "react";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import React, { useEffect, useState } from "react";
+import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import * as C from "./styles";
 import { useBimestre } from "./../../Context/resultsContext";
-
+import { adicionarAvaliacao, getDisciplinas } from "./../../database/database";
 type childrenProps = {
   children: React.ReactNode;
   bimestre: string;
+  setNewValue: any;
 };
 
-function ModalComponent({ children, bimestre }: childrenProps, args: any) {
+interface Disciplina {
+  disciplina: string;
+  bimestre: string;
+  nota: number;
+}
+
+function ModalComponent(
+  { children, bimestre, setNewValue }: childrenProps,
+  args: any
+) {
   const { setBimestre, setDisciplina, setNota, disciplina, nota } =
     useBimestre();
+  useEffect(() => {
+    (async () => {
+      const data = await getDisciplinas();
+      const disciplinasFiltradas = data.filter(
+        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
+      );
+      setNewValue(disciplinasFiltradas);
+    })();
+  }, [bimestre]);
   const [modal, setModal] = useState(false);
-  console.log(bimestre, disciplina, nota);
 
   const toggle = () => setModal(!modal);
 
@@ -20,9 +38,16 @@ function ModalComponent({ children, bimestre }: childrenProps, args: any) {
     setDisciplina(disciplina);
   };
 
-  const handleConfirmClick = () => {
+  const handleConfirmClick = async () => {
     setBimestre(bimestre);
     setModal(false);
+    const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
+    if (resultado === "Bimestre adicionado com sucesso!") {
+      setNewValue((prevDisciplinas: Disciplina[]) => [
+        ...prevDisciplinas,
+        { bimestre, disciplina, nota },
+      ]);
+    }
   };
 
   const handleNotaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
