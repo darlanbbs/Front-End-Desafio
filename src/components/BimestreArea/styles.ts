@@ -11,7 +11,6 @@ export const BimestreContainer = styled(C.Container)`
 `;
 
 export const CardArea = styled(C.Container)`
-  width: 100%;
   color: #fff;
   padding: 10px;
   margin-bottom: 30px;
@@ -42,15 +41,16 @@ export const Name = styled.h1`
 `;
 
 export const CardsArea = styled(C.Container)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  width: 300px;
   flex-wrap: wrap;
   flex-direction: row;
   gap: 10px;
-  @media (max-width: 560px) {
-    gap: 0px;
-  }
+`;
 
-
+export const CardContainer = styled(C.Container)`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 `;

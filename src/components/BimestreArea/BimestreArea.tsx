@@ -38,19 +38,21 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
           <AiOutlinePlus />
         </C.LaunchButton>
       </C.CardArea>
-      {disciplinas.length > 0 &&
-        disciplinas.map((disciplinaItem) => (
-          <C.CardsArea key={disciplinaItem.id}>
-            <Card
-              disciplina={disciplinaItem.disciplina}
-              id={disciplinaItem.id}
-              nota={disciplinaItem.nota}
-              criado_em={disciplinaItem.criado_em}
-              onDelete={onDelete}
-              AiOutlineBarChart={AiOutlineBarChart}
-            />
-          </C.CardsArea>
-        ))}
+      <C.CardContainer fluid="xl">
+        {disciplinas.length > 0 &&
+          disciplinas.map((disciplinaItem) => (
+            <C.CardsArea key={disciplinaItem.id}>
+              <Card
+                disciplina={disciplinaItem.disciplina}
+                id={disciplinaItem.id}
+                nota={disciplinaItem.nota}
+                criado_em={disciplinaItem.criado_em}
+                onDelete={onDelete}
+                AiOutlineBarChart={AiOutlineBarChart}
+              />
+            </C.CardsArea>
+          ))}
+      </C.CardContainer>
     </C.BimestreContainer>
   );
 };
