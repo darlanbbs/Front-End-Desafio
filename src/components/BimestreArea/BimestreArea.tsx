@@ -1,23 +1,17 @@
 import * as C from "./styles";
 import Card from "../cards/Card";
-import { AiOutlinePlus, AiOutlineBarChart, AiFillDelete } from "react-icons/Ai";
-import styled from "styled-components";
+import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
+import DeleteIconComponent from "../icon/deleteIcon";
 
 type Props = {
-  Bimestre: string;
+  title: string;
+  id: string;
+  disciplina: string;
+  nota: number;
+  criado_em: string;
 };
 
-const BimestreArea = ({ Bimestre }: Props) => {
-  const TrashIcon = styled(AiFillDelete)`
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    color: red;
-    width: 32px;
-    height: 32px;
-  `;
-
+const BimestreArea = ({ title, id, disciplina, nota, criado_em }: Props) => {
   function onDelete() {
     console.log("teste");
   }
@@ -26,7 +20,7 @@ const BimestreArea = ({ Bimestre }: Props) => {
     <>
       <C.BimestreContainer>
         <C.CardArea fluid="xl">
-          <C.Name>{Bimestre}</C.Name>
+          <C.Name>{title}</C.Name>
           <C.LaunchButton>
             Lançar Nota
             <AiOutlinePlus />
@@ -34,32 +28,13 @@ const BimestreArea = ({ Bimestre }: Props) => {
         </C.CardArea>
         <C.CardsArea>
           <Card
+            key={id}
             AiOutlineBarChart={AiOutlineBarChart}
-            TrashIcon={TrashIcon}
             onDelete={onDelete}
-            grade={5}
-            subject="Artes"
-          />
-          <Card
-            AiOutlineBarChart={AiOutlineBarChart}
-            TrashIcon={TrashIcon}
-            onDelete={onDelete}
-            grade={5}
-            subject="Artes"
-          />
-          <Card
-            AiOutlineBarChart={AiOutlineBarChart}
-            TrashIcon={TrashIcon}
-            onDelete={onDelete}
-            grade={5}
-            subject="Artes"
-          />
-          <Card
-            AiOutlineBarChart={AiOutlineBarChart}
-            TrashIcon={TrashIcon}
-            onDelete={onDelete}
-            grade={5}
-            subject="Artes"
+            grade={nota}
+            subject={disciplina}
+            title={title}
+            criado_em={criado_em}
           />
         </C.CardsArea>
       </C.BimestreContainer>

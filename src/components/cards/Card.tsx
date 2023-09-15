@@ -1,3 +1,4 @@
+import DeleteIconComponent from "../icon/deleteIcon";
 import * as C from "./styles";
 
 type Props = {
@@ -27,14 +28,15 @@ const Card = ({
   subject,
   grade,
   onDelete,
-  TrashIcon,
   AiOutlineBarChart,
+  title,
+  criado_em,
 }: Props) => {
   return (
     <C.MiniCardContainer color={getBackgroundColor(subject)}>
-      <TrashIcon onClick={onDelete} />
-      <C.Title>Title</C.Title>
-      <C.SubTitle>Subtítulo Acizentado</C.SubTitle>
+      <DeleteIconComponent onClick={onDelete} />
+      <C.Title>{title}</C.Title>
+      <C.SubTitle>{criado_em}</C.SubTitle>
       <C.EndSection>
         <C.IconAndNote>
           <AiOutlineBarChart />

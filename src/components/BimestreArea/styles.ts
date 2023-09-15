@@ -51,4 +51,6 @@ export const CardsArea = styled(C.Container)`
   @media (max-width: 560px) {
     gap: 0px;
   }
+
+
 `;
