@@ -2,15 +2,16 @@ import DeleteIconComponent from "../icon/deleteIcon";
 import * as C from "./styles";
 
 type Props = {
-  subject: string;
-  grade: number;
+  id: string;
+  disciplina: string;
+  nota: number;
   onDelete: () => void;
-  TrashIcon: any;
   AiOutlineBarChart: any;
+  criado_em: string;
 };
 
-const getBackgroundColor = (subject: string) => {
-  switch (subject) {
+const getBackgroundColor = (disciplina: string) => {
+  switch (disciplina) {
     case "Sociologia":
       return "#9B19C2";
     case "Biologia":
@@ -25,23 +26,22 @@ const getBackgroundColor = (subject: string) => {
 };
 
 const Card = ({
-  subject,
-  grade,
+  disciplina,
+  nota,
   onDelete,
   AiOutlineBarChart,
-  title,
   criado_em,
 }: Props) => {
   return (
-    <C.MiniCardContainer color={getBackgroundColor(subject)}>
+    <C.MiniCardContainer color={getBackgroundColor(disciplina)}>
       <DeleteIconComponent onClick={onDelete} />
-      <C.Title>{title}</C.Title>
+      <C.Title>{disciplina}</C.Title>
       <C.SubTitle>{criado_em}</C.SubTitle>
       <C.EndSection>
         <C.IconAndNote>
           <AiOutlineBarChart />
           {/* @ts-ignore */}
-          <C.Note grade={grade}>{grade}</C.Note>
+          <C.Note nota={nota}>{nota}</C.Note>
         </C.IconAndNote>
       </C.EndSection>
     </C.MiniCardContainer>

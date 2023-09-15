@@ -45,9 +45,9 @@ export const IconAndNote = styled.div`
 export const Note = styled.span`
   color: ${(props) => {
     // @ts-ignore
-    if (props.grade <= 5) return "red";
+    if (props.nota <= 5) return "red";
     // @ts-ignore
-    if (props.grade <= 8) return "yellow";
+    if (props.nota <= 8) return "yellow";
     return "green";
   }};
   margin-left: 5px;

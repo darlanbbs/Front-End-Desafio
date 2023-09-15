@@ -1,44 +1,62 @@
 import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
-import DeleteIconComponent from "../icon/deleteIcon";
+import getDisciplinas from "../../database/database";
+import { useEffect, useState } from "react";
 
-type Props = {
-  title: string;
+interface Props {
   id: string;
   disciplina: string;
   nota: number;
   criado_em: string;
-};
+  bimestre: string;
+}
 
-const BimestreArea = ({ title, id, disciplina, nota, criado_em }: Props) => {
+interface Disciplina {
+  id: string;
+  disciplina: string;
+  bimestre: string;
+  nota: number;
+  criado_em: string;
+}
+
+const BimestreArea = ({ bimestre }: Props) => {
+  const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await getDisciplinas();
+      setDisciplinas(data);
+    })();
+  }, []);
+
   function onDelete() {
     console.log("teste");
   }
 
   return (
-    <>
-      <C.BimestreContainer>
-        <C.CardArea fluid="xl">
-          <C.Name>{title}</C.Name>
-          <C.LaunchButton>
-            Lançar Nota
-            <AiOutlinePlus />
-          </C.LaunchButton>
-        </C.CardArea>
-        <C.CardsArea>
-          <Card
-            key={id}
-            AiOutlineBarChart={AiOutlineBarChart}
-            onDelete={onDelete}
-            grade={nota}
-            subject={disciplina}
-            title={title}
-            criado_em={criado_em}
-          />
-        </C.CardsArea>
-      </C.BimestreContainer>
-    </>
+    <C.BimestreContainer>
+      <C.CardArea fluid="xl">
+        <C.Name>{bimestre}</C.Name>
+        <C.LaunchButton>
+          Lançar Nota
+          <AiOutlinePlus />
+        </C.LaunchButton>
+      </C.CardArea>
+      {disciplinas.length > 0 &&
+        disciplinas.map((disciplinaItem) => (
+          <C.CardsArea key={disciplinaItem.id}>
+            <Card
+              disciplina={disciplinaItem.disciplina}
+              id={disciplinaItem.id}
+              nota={disciplinaItem.nota}
+              criado_em={disciplinaItem.criado_em}
+              onDelete={onDelete}
+              AiOutlineBarChart={AiOutlineBarChart}
+            />
+          </C.CardsArea>
+        ))}
+    </C.BimestreContainer>
   );
 };
 
