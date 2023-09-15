@@ -26,9 +26,12 @@ const BimestreArea = ({ bimestre }: Props) => {
   useEffect(() => {
     (async () => {
       const data = await getDisciplinas();
-      setDisciplinas(data);
+      const disciplinasFiltradas = data.filter(
+        (disciplinaItem) => disciplinaItem.bimestre === bimestre
+      );
+      setDisciplinas(disciplinasFiltradas);
     })();
-  }, []);
+  }, [bimestre]);
 
   function onDelete() {
     console.log("teste");

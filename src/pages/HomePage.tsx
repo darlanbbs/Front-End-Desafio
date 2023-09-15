@@ -5,6 +5,9 @@ const HomePage = () => {
   return (
     <C.Container fluid>
       <BimestreArea bimestre="Bimestre 1" />
+      <BimestreArea bimestre="Bimestre 2" />
+      <BimestreArea bimestre="Bimestre 3" />
+      <BimestreArea bimestre="Bimestre 4" />
     </C.Container>
   );
 };
