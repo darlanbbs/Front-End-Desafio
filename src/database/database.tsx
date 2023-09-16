@@ -2,7 +2,6 @@ import axios from "axios";
 
 export const getDisciplinas = async () => {
   const response = await axios.get("http://localhost:3000/disciplinas");
-
   return response.data;
 };
 
@@ -36,7 +35,7 @@ export const deletarAvaliacao = async (id: string) => {
 
 export const atualizarAvaliacao = async (
   nota: number,
-  disciplina: string,
+
   id?: string
 ) => {
   try {
@@ -44,7 +43,6 @@ export const atualizarAvaliacao = async (
       `http://localhost:3000/disciplinas/${id}`,
       {
         nota,
-        disciplina,
       }
     );
     return response.data;

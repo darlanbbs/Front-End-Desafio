@@ -2,7 +2,7 @@ import { deletarAvaliacao } from "../../database/database";
 import DeleteIconComponent from "../icon/deleteIcon";
 import UpdateModalComponent from "../modalEditCard/Modal";
 import * as C from "./styles";
-
+import { useState } from "react";
 type Props = {
   id: string;
   disciplina: string;
@@ -39,11 +39,14 @@ const Card = ({
   bimestre,
   setNewValue,
 }: Props) => {
+  const [disciplinasExcluidas, setDisciplinasExcluidas] = useState([]);
+
   const handleDelete = async () => {
     const resultado = await deletarAvaliacao(id);
 
     if (resultado === "Disciplina deletada com sucesso!") {
       onDelete(id);
+
     }
   };
 

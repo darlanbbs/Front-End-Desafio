@@ -25,17 +25,14 @@ function ModalCreateCard(
 ) {
   const { setBimestre, setDisciplina, setNota, disciplina, nota } =
     useBimestre();
-  useEffect(() => {
-    (async () => {
-      const data = await getDisciplinas();
-      const disciplinasFiltradas = data.filter(
-        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
-      );
-      setNewValue(disciplinasFiltradas);
-    })();
-  }, [bimestre]);
+
+  const [disciplinasSelecionadas, setDisciplinasSelecionadas] = useState<
+    string[]
+  >([]);
+
   const [modal, setModal] = useState(false);
   const [notaError, setNotaError] = useState("");
+  const [disciplinaError, setDisciplinaError] = useState("");
 
   const toggle = () => setModal(!modal);
 
@@ -49,8 +46,10 @@ function ModalCreateCard(
       disciplina !== null &&
       nota !== null &&
       nota >= 0 &&
-      nota <= 10
+      nota <= 10 &&
+      !disciplinasSelecionadas.includes(disciplina)
     ) {
+      setDisciplinaError("");
       setBimestre(bimestre);
       setModal(false);
       const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
@@ -59,10 +58,14 @@ function ModalCreateCard(
           ...prevDisciplinas,
           resultado,
         ]);
+        setDisciplinasSelecionadas([...disciplinasSelecionadas, disciplina]);
       } catch (error) {
         console.error("Erro ao adicionar avaliação:", error);
       }
+    } else {
+      setDisciplinaError("Disciplina já selecionada no bimestre.");
     }
+    console.log(disciplinasSelecionadas);
   };
 
   const handleNotaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -77,6 +80,19 @@ function ModalCreateCard(
       setNota(newNota);
     }
   };
+  useEffect(() => {
+    (async () => {
+      const data = await getDisciplinas();
+      const disciplinasFiltradas = data.filter(
+        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
+      );
+      setNewValue(disciplinasFiltradas);
+
+      setDisciplinasSelecionadas(
+        disciplinasFiltradas.map((item: Disciplina) => item.disciplina)
+      );
+    })();
+  }, [disciplinasSelecionadas]);
 
   return (
     <div>
@@ -107,6 +123,9 @@ function ModalCreateCard(
               handleDisciplinaClick={handleDisciplinaClick}
             />
           </C.ButtonsContainer>
+          {disciplinaError && (
+            <div className="text-danger">{disciplinaError}</div>
+          )}
           <C.NotasDiv>Notas</C.NotasDiv>
           <StyledInputComponent
             type="number"

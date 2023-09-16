@@ -1,18 +1,13 @@
 import styled from "styled-components";
 import { Button as RSButton, Modal as RSModal } from "reactstrap";
 
-export const DisciplinaDiv = styled.div`
-  font-weight: 500;
-  margin-bottom: 10px;
-  color: #fff;
-  font-size: 18px;
-`;
+
 
 export const NotasDiv = styled.div`
-  font-weight: 300;
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 18px;
   margin-bottom: 20px;
-  color: #ecedee;
+  color: #fff;
 `;
 
 export const ButtonsContainer = styled.div`

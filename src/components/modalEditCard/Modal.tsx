@@ -3,7 +3,7 @@ import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import * as C from "./styles";
 import { useBimestre } from "../../Context/resultsContext";
 import { atualizarAvaliacao, getDisciplinas } from "../../database/database";
-import StylizedButton from "../buttons/Button";
+
 import StyledInputComponent from "../input/input";
 
 interface disciplinaItemProps {
@@ -24,20 +24,16 @@ function UpdateModalComponent({
   setNewValue?: (newValue: any) => void;
   id: string;
 }) {
-  const { setDisciplina, setNota, disciplina, nota } = useBimestre();
+  const { setNota, nota } = useBimestre();
   const [modal, setModal] = useState(false);
   const [notaError, setNotaError] = useState("");
 
   const toggle = () => setModal(!modal);
 
-  const handleDisciplinaClick = (disciplina: string) => {
-    setDisciplina(disciplina);
-  };
-
   const handleConfirmClick = async () => {
-    if (bimestre && disciplina && nota) {
+    if (bimestre && nota) {
       setModal(false);
-      const resultado = await atualizarAvaliacao(nota, disciplina, id);
+      const resultado = await atualizarAvaliacao(nota, id);
 
       const disciplinas = await getDisciplinas();
       const updatedDisciplinas = disciplinas.filter(
@@ -45,7 +41,6 @@ function UpdateModalComponent({
           if (disciplinaItem.id === id) {
             return {
               resultado: {
-                disciplina: resultado.disciplina,
                 nota: resultado.nota,
               },
             };
@@ -78,31 +73,7 @@ function UpdateModalComponent({
       <C.Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{bimestre}</ModalHeader>
         <ModalBody>
-          <C.DisciplinaDiv>Disciplina</C.DisciplinaDiv>
-          <C.ButtonsContainer>
-            <StylizedButton
-              color="success"
-              disciplina="Biologia"
-              handleDisciplinaClick={handleDisciplinaClick}
-            />
-            <StylizedButton
-              color="info"
-              disciplina="Sociologia"
-              handleDisciplinaClick={handleDisciplinaClick}
-            />
-            <StylizedButton
-              color="warning"
-              disciplina="Geografia"
-              handleDisciplinaClick={handleDisciplinaClick}
-            />
-            <StylizedButton
-              color="danger"
-              disciplina="Artes"
-              handleDisciplinaClick={handleDisciplinaClick}
-            />
-          </C.ButtonsContainer>
           <C.NotasDiv>Notas</C.NotasDiv>
-
           <StyledInputComponent
             type="number"
             min="0"
@@ -114,9 +85,7 @@ function UpdateModalComponent({
           />
         </ModalBody>
         <ModalFooter>
-          <C.StyledButton onClick={handleConfirmClick}>
-            Confirmar
-          </C.StyledButton>
+          <C.StyledButton onClick={handleConfirmClick}>Alterar</C.StyledButton>
         </ModalFooter>
       </C.Modal>
     </div>
