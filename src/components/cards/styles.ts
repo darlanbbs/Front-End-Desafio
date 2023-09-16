@@ -7,7 +7,7 @@ export const MiniCardContainer = styled.div<Props>`
   border-radius: 8px;
   background-color: ${(props) => props.color};
   color: #fff;
-  padding: 15px;
+  padding: 15px 0px;
   position: relative;
   margin-bottom: 10px;
   width: 230px;
@@ -17,24 +17,27 @@ export const MiniCardContainer = styled.div<Props>`
 export const Title = styled.h1`
   font-size: 1.2em;
   margin-bottom: 5px;
+  margin-left: 15px;
 `;
 
 export const SubTitle = styled.h2`
   font-size: 0.8em;
   color: #ccc;
   margin-bottom: 10px;
+  margin-left: 15px;
 `;
 
 export const EndSection = styled.div`
   width: 100%;
   height: 50%;
   display: flex;
+  justify-content: center;
   align-items: end;
-  padding-left: 5px;
   border-radius: 0 0 8px 8px;
 `;
 
 export const IconAndNote = styled.div`
+  padding: 8px;
   display: flex;
   align-items: center;
   background-color: #0f0f0fb2;
