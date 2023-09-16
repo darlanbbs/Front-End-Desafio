@@ -21,20 +21,6 @@ export const ButtonsContainer = styled.div`
   margin-bottom: 20px;
 `;
 
-export const StyledInput = styled.input`
-  width: 65px;
-  padding: 5px;
-  font-size: 16px;
-  border-radius: 12px;
-  background-color: transparent;
-  border: #424242 1px solid;
-  display: flex;
-  align-items: center;
-  text-align: center;
-
-  color: #999f;
-`;
-
 export const StyledButton = styled(RSButton)`
   background-color: #e9ff1a;
   border: none;

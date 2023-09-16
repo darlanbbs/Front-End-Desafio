@@ -3,6 +3,8 @@ import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import * as C from "./styles";
 import { useBimestre } from "../../Context/resultsContext";
 import { atualizarAvaliacao, getDisciplinas } from "../../database/database";
+import StylizedButton from "../buttons/Button";
+import StyledInputComponent from "../input/input";
 
 interface disciplinaItemProps {
   id: string;
@@ -24,6 +26,7 @@ function UpdateModalComponent({
 }) {
   const { setDisciplina, setNota, disciplina, nota } = useBimestre();
   const [modal, setModal] = useState(false);
+  const [notaError, setNotaError] = useState("");
 
   const toggle = () => setModal(!modal);
 
@@ -54,10 +57,17 @@ function UpdateModalComponent({
       }
     }
   };
-
   const handleNotaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newNota = Number(event.target.value);
-    setNota(newNota);
+    const inputValue = event.target.value;
+    const newNota = inputValue !== "" ? Number(inputValue) : null;
+
+    if (newNota !== null && (newNota < 0 || newNota > 10)) {
+      setNotaError("Nota inválida. Deve estar entre 0 e 10.");
+    } else {
+      setNotaError("");
+      //@ts-ignore
+      setNota(newNota);
+    }
   };
 
   return (
@@ -68,38 +78,37 @@ function UpdateModalComponent({
         <ModalBody>
           <C.DisciplinaDiv>Disciplina</C.DisciplinaDiv>
           <C.ButtonsContainer>
-            <C.StyledButton
+            <StylizedButton
               color="success"
-              onClick={() => handleDisciplinaClick("Biologia")}
-            >
-              Biologia
-            </C.StyledButton>
-            <C.StyledButton
+              disciplina="Biologia"
+              handleDisciplinaClick={handleDisciplinaClick}
+            />
+            <StylizedButton
               color="info"
-              onClick={() => handleDisciplinaClick("Sociologia")}
-            >
-              Sociologia
-            </C.StyledButton>
-            <C.StyledButton
+              disciplina="Sociologia"
+              handleDisciplinaClick={handleDisciplinaClick}
+            />
+            <StylizedButton
               color="warning"
-              onClick={() => handleDisciplinaClick("Geografia")}
-            >
-              Geografia
-            </C.StyledButton>
-            <C.StyledButton
+              disciplina="Geografia"
+              handleDisciplinaClick={handleDisciplinaClick}
+            />
+            <StylizedButton
               color="danger"
-              onClick={() => handleDisciplinaClick("Artes")}
-            >
-              Artes
-            </C.StyledButton>
+              disciplina="Artes"
+              handleDisciplinaClick={handleDisciplinaClick}
+            />
           </C.ButtonsContainer>
           <C.NotasDiv>Notas</C.NotasDiv>
-          <C.StyledInput
+
+          <StyledInputComponent
             type="number"
             min="0"
             max="10"
+            //@ts-ignore
             value={nota}
             onChange={handleNotaChange}
+            notaError={notaError}
           />
         </ModalBody>
         <ModalFooter>
