@@ -2,6 +2,7 @@ import axios from "axios";
 
 export const getDisciplinas = async () => {
   const response = await axios.get("http://localhost:3000/disciplinas");
+
   return response.data;
 };
 
@@ -46,7 +47,6 @@ export const atualizarAvaliacao = async (
         disciplina,
       }
     );
-
     return response.data;
   } catch (error) {
     console.error("Erro ao atualizar avaliação:", error);

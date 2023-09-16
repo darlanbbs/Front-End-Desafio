@@ -40,23 +40,25 @@ function UpdateModalComponent({
       const resultado = await atualizarAvaliacao(nota, disciplina, id);
 
       const disciplinas = await getDisciplinas();
-      if (disciplinas) {
-        const updatedDisciplinas = disciplinas.map(
-          (disciplinaItem: disciplinaItemProps) =>
-            disciplinaItem.id === id
-              ? {
-                  ...disciplinaItem,
-                  disciplina: resultado.disciplina,
-                  nota: resultado.nota,
-                }
-              : disciplinaItem
-        );
-        if (setNewValue) {
-          setNewValue(updatedDisciplinas);
+      const updatedDisciplinas = disciplinas.filter(
+        (disciplinaItem: disciplinaItemProps) => {
+          if (disciplinaItem.id === id) {
+            return {
+              resultado: {
+                disciplina: resultado.disciplina,
+                nota: resultado.nota,
+              },
+            };
+          }
         }
+      );
+      if (setNewValue) {
+        setNewValue(updatedDisciplinas);
       }
     }
+    setModal(false);
   };
+
   const handleNotaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event.target.value;
     const newNota = inputValue !== "" ? Number(inputValue) : null;

@@ -44,7 +44,13 @@ function ModalCreateCard(
   };
 
   const handleConfirmClick = async () => {
-    if (bimestre !== null && disciplina !== null && nota !== null) {
+    if (
+      bimestre !== null &&
+      disciplina !== null &&
+      nota !== null &&
+      nota >= 0 &&
+      nota <= 10
+    ) {
       setBimestre(bimestre);
       setModal(false);
       const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
