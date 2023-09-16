@@ -13,8 +13,8 @@ O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-D
 
 # Instalação e Execução
 - Certifique-se de ter o Node.js e o npm instalados em seu ambiente.
-- No diretório raiz do frontend, execute o comando npm install ou yarn para instalar as dependências.
 - Você precisa rodar o BackEnd da aplicação que está aqui >> https://github.com/darlanbbs/BackEnd-Desafio
+- No diretório raiz do frontend, execute o comando npm install ou yarn para instalar as dependências.
 - Para iniciar o aplicativo, execute npm start ou yarn dev.
 
 # Funcionalidades 
