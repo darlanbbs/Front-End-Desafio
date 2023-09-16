@@ -35,6 +35,7 @@ function ModalCreateCard(
     })();
   }, [bimestre]);
   const [modal, setModal] = useState(false);
+  const [notaError, setNotaError] = useState("");
 
   const toggle = () => setModal(!modal);
 

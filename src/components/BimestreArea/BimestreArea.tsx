@@ -1,7 +1,7 @@
 import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ModalCreateCard from "../modalCreateCard/Modal";
 
 interface Disciplina {
@@ -15,7 +15,6 @@ interface Disciplina {
 
 const BimestreArea = ({ bimestre }: Disciplina) => {
   const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
-  console.log(disciplinas);
   const handleDelete = (id: string) => {
     setDisciplinas((prevDisciplinas) =>
       prevDisciplinas.filter((disciplina) => disciplina.id !== id)
