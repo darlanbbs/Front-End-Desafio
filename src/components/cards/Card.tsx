@@ -42,8 +42,6 @@ const Card = ({
     }
   };
 
-  console.log(id, disciplina, nota);
-
   return (
     <C.MiniCardContainer color={getBackgroundColor(disciplina)}>
       <DeleteIconComponent onClick={handleDelete} />

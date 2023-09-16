@@ -45,7 +45,6 @@ function ModalComponent(
       setBimestre(bimestre);
       setModal(false);
       const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
-      console.log(resultado);
       try {
         setNewValue((prevDisciplinas: Disciplina[]) => [
           ...prevDisciplinas,
