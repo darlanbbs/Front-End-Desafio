@@ -76,6 +76,12 @@ function ModalComponent(
               Biologia
             </C.StyledButton>
             <C.StyledButton
+              color="info"
+              onClick={() => handleDisciplinaClick("Sociologia")}
+            >
+              Sociologia
+            </C.StyledButton>
+            <C.StyledButton
               color="warning"
               onClick={() => handleDisciplinaClick("Geografia")}
             >
