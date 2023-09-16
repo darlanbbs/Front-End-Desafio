@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import * as C from "./styles";
-import { useBimestre } from "./../../Context/resultsContext";
-import { adicionarAvaliacao, getDisciplinas } from "./../../database/database";
+import { useBimestre } from "../../Context/resultsContext";
+import { adicionarAvaliacao, getDisciplinas } from "../../database/database";
 type childrenProps = {
   children: React.ReactNode;
   bimestre: string;

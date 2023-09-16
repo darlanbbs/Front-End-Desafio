@@ -2,7 +2,7 @@ import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
 import { useState, useEffect } from "react";
-import ModalComponent from "../modal/Modal";
+import ModalComponent from "../modalCreateCard/Modal";
 import { getDisciplinas } from "../../database/database";
 
 interface Disciplina {
