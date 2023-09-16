@@ -108,7 +108,7 @@ function UpdateModalComponent({
             min="0"
             max="10"
             //@ts-ignore
-            value={nota}
+            value={nota !== null ? nota : ""}
             onChange={handleNotaChange}
             notaError={notaError}
           />
