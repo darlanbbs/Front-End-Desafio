@@ -5,27 +5,25 @@ type Props = {
   handleDisciplinaClick: (disciplina: string) => void;
   color: string;
 };
-
+const StyledButton = styled(Button)`
+  background-color: #e9ff1a;
+  border: none;
+  color: black;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+`;
 const StylizedButton = ({
   disciplina,
   handleDisciplinaClick,
   color,
 }: Props) => {
-  const StyledButton = styled(Button)`
-    background-color: #e9ff1a;
-    border: none;
-    color: black;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  `;
-
   return (
     <StyledButton
-      color="success"
+      color={color}
       onClick={() => handleDisciplinaClick(disciplina)}
     >
-      Biologia
+      {disciplina}
     </StyledButton>
   );
 };
