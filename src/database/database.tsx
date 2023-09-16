@@ -17,7 +17,6 @@ export const adicionarAvaliacao = async (
       disciplina,
       nota,
     });
-    getDisciplinas();
     return response.data;
   } catch (error) {
     console.error("Erro ao adicionar avaliação:", error);

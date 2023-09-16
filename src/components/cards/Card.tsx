@@ -1,7 +1,6 @@
 import { deletarAvaliacao } from "../../database/database";
 import DeleteIconComponent from "../icon/deleteIcon";
 import * as C from "./styles";
-import { getDisciplinas } from "../../database/database";
 
 type Props = {
   id: string;

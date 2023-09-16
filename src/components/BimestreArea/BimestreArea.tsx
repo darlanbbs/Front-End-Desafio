@@ -22,19 +22,6 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
     );
   };
 
-  useEffect(() => {
-    const fetchDisciplinas = async () => {
-      try {
-        const data = await getDisciplinas();
-        setDisciplinas(data);
-      } catch (error) {
-        console.error("Erro ao obter disciplinas:", error);
-      }
-    };
-
-    fetchDisciplinas();
-  }, []);
-
   return (
     <C.BimestreContainer>
       <C.CardArea fluid="xl">
