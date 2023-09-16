@@ -12,8 +12,7 @@ const DeleteIcon = styled.div`
   right: 5px;
   cursor: pointer;
   color: red;
-  width: 32px;
-  height: 32px;
+  font-size: 24px;
 `;
 
 const DeleteIconComponent = (props: Props) => {

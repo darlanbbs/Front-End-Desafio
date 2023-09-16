@@ -65,7 +65,6 @@ function ModalCreateCard(
     } else {
       setDisciplinaError("Disciplina já selecionada no bimestre.");
     }
-    console.log(disciplinasSelecionadas);
   };
 
   const handleNotaChange = (event: React.ChangeEvent<HTMLInputElement>) => {
