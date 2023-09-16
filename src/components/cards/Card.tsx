@@ -1,5 +1,6 @@
 import { deletarAvaliacao } from "../../database/database";
 import DeleteIconComponent from "../icon/deleteIcon";
+import UpdateModalComponent from "../modalEditCard/Modal";
 import * as C from "./styles";
 
 type Props = {
@@ -8,7 +9,9 @@ type Props = {
   nota: number;
   onDelete: any;
   AiOutlineBarChart: any;
-  criado_em: string;
+  atualizado_em: string;
+  bimestre: string;
+  setNewValue: any;
 };
 
 const getBackgroundColor = (disciplina: string) => {
@@ -31,8 +34,10 @@ const Card = ({
   nota,
   onDelete,
   AiOutlineBarChart,
-  criado_em,
   id,
+  atualizado_em,
+  bimestre,
+  setNewValue,
 }: Props) => {
   const handleDelete = async () => {
     const resultado = await deletarAvaliacao(id);
@@ -43,18 +48,25 @@ const Card = ({
   };
 
   return (
-    <C.MiniCardContainer color={getBackgroundColor(disciplina)}>
-      <DeleteIconComponent onClick={handleDelete} />
-      <C.Title>{disciplina}</C.Title>
-      <C.SubTitle>{criado_em}</C.SubTitle>
-      <C.EndSection>
-        <C.IconAndNote>
-          <AiOutlineBarChart />
-          {/* @ts-ignore */}
-          <C.Note nota={nota}>{nota}</C.Note>
-        </C.IconAndNote>
-      </C.EndSection>
-    </C.MiniCardContainer>
+    <UpdateModalComponent
+      key={id}
+      bimestre={bimestre}
+      id={id}
+      setNewValue={setNewValue}
+    >
+      <C.MiniCardContainer color={getBackgroundColor(disciplina)}>
+        <DeleteIconComponent onClick={handleDelete} />
+        <C.Title>{disciplina}</C.Title>
+        <C.SubTitle>{atualizado_em}</C.SubTitle>
+        <C.EndSection>
+          <C.IconAndNote>
+            <AiOutlineBarChart />
+            {/* @ts-ignore */}
+            <C.Note nota={nota}>{nota}</C.Note>
+          </C.IconAndNote>
+        </C.EndSection>
+      </C.MiniCardContainer>
+    </UpdateModalComponent>
   );
 };
 

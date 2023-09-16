@@ -2,8 +2,7 @@ import * as C from "./styles";
 import Card from "../cards/Card";
 import { AiOutlinePlus, AiOutlineBarChart } from "react-icons/Ai";
 import { useState, useEffect } from "react";
-import ModalComponent from "../modalCreateCard/Modal";
-import { getDisciplinas } from "../../database/database";
+import ModalCreateCard from "../modalCreateCard/Modal";
 
 interface Disciplina {
   id: string;
@@ -11,11 +10,12 @@ interface Disciplina {
   bimestre: string;
   nota: number;
   criado_em: string;
+  atualizado_em: string;
 }
 
 const BimestreArea = ({ bimestre }: Disciplina) => {
   const [disciplinas, setDisciplinas] = useState<Disciplina[]>([]);
-
+  console.log(disciplinas);
   const handleDelete = (id: string) => {
     setDisciplinas((prevDisciplinas) =>
       prevDisciplinas.filter((disciplina) => disciplina.id !== id)
@@ -26,7 +26,7 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
     <C.BimestreContainer>
       <C.CardArea fluid="xl">
         <C.Name>{bimestre}</C.Name>
-        <ModalComponent
+        <ModalCreateCard
           bimestre={bimestre}
           key={bimestre}
           setNewValue={setDisciplinas}
@@ -35,18 +35,20 @@ const BimestreArea = ({ bimestre }: Disciplina) => {
             Lançar Nota
             <AiOutlinePlus />
           </C.LaunchButton>
-        </ModalComponent>
+        </ModalCreateCard>
       </C.CardArea>
       <C.CardContainer fluid="xl">
         {disciplinas.length > 0 &&
           disciplinas.map((disciplinaItem) => (
             <C.CardsArea key={disciplinaItem.id}>
               <Card
+                setNewValue={setDisciplinas}
+                atualizado_em={disciplinaItem.atualizado_em}
                 key={disciplinaItem.id}
                 disciplina={disciplinaItem.disciplina}
                 id={disciplinaItem.id}
                 nota={disciplinaItem.nota}
-                criado_em={disciplinaItem.criado_em}
+                bimestre={disciplinaItem.bimestre}
                 onDelete={handleDelete}
                 AiOutlineBarChart={AiOutlineBarChart}
               />

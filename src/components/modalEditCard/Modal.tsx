@@ -1,37 +1,28 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import * as C from "./styles";
 import { useBimestre } from "../../Context/resultsContext";
-import { adicionarAvaliacao, getDisciplinas } from "../../database/database";
-type childrenProps = {
+import { atualizarAvaliacao, getDisciplinas } from "../../database/database";
+
+interface disciplinaItemProps {
+  id: string;
+  resultado: {
+    disciplina: string;
+    nota: number;
+  };
+}
+function UpdateModalComponent({
+  children,
+  bimestre,
+  id,
+  setNewValue,
+}: {
   children: React.ReactNode;
   bimestre: string;
-  setNewValue: any;
-};
-
-interface Disciplina {
-  disciplina: string;
-  bimestre: string;
-  nota: number;
-  criado_em: string;
+  setNewValue?: (newValue: any) => void;
   id: string;
-}
-
-function ModalCreateCard(
-  { children, bimestre, setNewValue }: childrenProps,
-  args: any
-) {
-  const { setBimestre, setDisciplina, setNota, disciplina, nota } =
-    useBimestre();
-  useEffect(() => {
-    (async () => {
-      const data = await getDisciplinas();
-      const disciplinasFiltradas = data.filter(
-        (disciplinaItem: Disciplina) => disciplinaItem.bimestre === bimestre
-      );
-      setNewValue(disciplinasFiltradas);
-    })();
-  }, [bimestre]);
+}) {
+  const { setDisciplina, setNota, disciplina, nota } = useBimestre();
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
@@ -41,17 +32,25 @@ function ModalCreateCard(
   };
 
   const handleConfirmClick = async () => {
-    if (bimestre !== null && disciplina !== null && nota !== null) {
-      setBimestre(bimestre);
+    if (bimestre && disciplina && nota) {
       setModal(false);
-      const resultado = await adicionarAvaliacao(bimestre, disciplina, nota);
-      try {
-        setNewValue((prevDisciplinas: Disciplina[]) => [
-          ...prevDisciplinas,
-          resultado,
-        ]);
-      } catch (error) {
-        console.error("Erro ao adicionar avaliação:", error);
+      const resultado = await atualizarAvaliacao(nota, disciplina, id);
+
+      const disciplinas = await getDisciplinas();
+      if (disciplinas) {
+        const updatedDisciplinas = disciplinas.map(
+          (disciplinaItem: disciplinaItemProps) =>
+            disciplinaItem.id === id
+              ? {
+                  ...disciplinaItem,
+                  disciplina: resultado.disciplina,
+                  nota: resultado.nota,
+                }
+              : disciplinaItem
+        );
+        if (setNewValue) {
+          setNewValue(updatedDisciplinas);
+        }
       }
     }
   };
@@ -64,7 +63,7 @@ function ModalCreateCard(
   return (
     <div>
       <div onClick={toggle}>{children}</div>
-      <C.Modal isOpen={modal} toggle={toggle} {...args}>
+      <C.Modal isOpen={modal} toggle={toggle}>
         <ModalHeader toggle={toggle}>{bimestre}</ModalHeader>
         <ModalBody>
           <C.DisciplinaDiv>Disciplina</C.DisciplinaDiv>
@@ -99,6 +98,7 @@ function ModalCreateCard(
             type="number"
             min="0"
             max="10"
+            value={nota}
             onChange={handleNotaChange}
           />
         </ModalBody>
@@ -112,4 +112,4 @@ function ModalCreateCard(
   );
 }
 
-export default ModalCreateCard;
+export default UpdateModalComponent;
