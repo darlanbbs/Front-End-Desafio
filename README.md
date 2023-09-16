@@ -15,6 +15,11 @@ O frontend desta aplicação foi desenvolvido utilizando React, proporcionando u
 - No diretório raiz do frontend, execute o comando npm install para instalar as dependências.
 - Para iniciar o aplicativo, execute npm start.
 
+# Funcionalidades 
+- Adicionar novas disciplinas.
+- Atualizar informações de disciplinas existentes.
+- Excluir disciplinas.
+
 # Layout
 
 # Página vazia
