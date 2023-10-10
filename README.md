@@ -3,7 +3,7 @@
 # Descrição
 
 O FrontEnd desta aplicação foi desenvolvido utilizando React, proporcionando uma experiência de usuário interativa e amigável.<br>
-O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-Desafio
+O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-App-Disciplinas
 
 # Tecnologias Utilizadas
 - React: Biblioteca JavaScript para a construção de interfaces de usuário.
@@ -13,7 +13,7 @@ O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-D
 
 # Instalação e Execução
 - Certifique-se de ter o Node.js e o npm instalados em seu ambiente.
-- Você precisa rodar o BackEnd da aplicação que está aqui >> https://github.com/darlanbbs/BackEnd-Desafio
+- Você precisa rodar o BackEnd da aplicação que está aqui >> https://github.com/darlanbbs/BackEnd-App-Disciplinas
 - No diretório raiz do frontend, execute o comando npm install ou yarn para instalar as dependências.
 - Para iniciar o aplicativo, execute npm start ou yarn dev.
 
