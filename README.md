@@ -2,7 +2,7 @@
 
 # Descrição
 
-O FrontEnd desta aplicação foi desenvolvido utilizando React, proporcionando uma experiência de usuário interativa e amigável.<br>
+Este é o FrontEnd da aplicação BackEnd-APP-Disciplinas,uma aplicação de gerenciamento de disciplinas e avaliações baseado em seus semestres,desenvolvido em ReactJs com Typescript proporcionando uma experiência de usuário interativa e amigável.<br>
 O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-App-Disciplinas
 
 # Tecnologias Utilizadas
