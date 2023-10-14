@@ -1,27 +1,42 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Descrição
 
-Currently, two official plugins are available:
+Este é o FrontEnd da aplicação BackEnd-APP-Disciplinas,uma aplicação de gerenciamento de disciplinas e avaliações baseado em seus semestres,desenvolvido em ReactJs com Typescript proporcionando uma experiência de usuário interativa e amigável.<br>
+O BackEnd desta aplicação está aqui >> https://github.com/darlanbbs/BackEnd-App-Disciplinas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Tecnologias Utilizadas
+- React: Biblioteca JavaScript para a construção de interfaces de usuário.
+- Reactstrap: Conjunto de componentes Bootstrap para React.
+- Axios: Biblioteca para fazer requisições HTTP.
+- Typescript: É um superconjunto sintático estrito de JavaScript e adiciona tipagem estática opcional à linguagem.
 
-## Expanding the ESLint configuration
+# Instalação e Execução
+- Certifique-se de ter o Node.js e o npm instalados em seu ambiente.
+- Você precisa rodar o BackEnd da aplicação que está aqui >> https://github.com/darlanbbs/BackEnd-App-Disciplinas
+- No diretório raiz do frontend, execute o comando npm install ou yarn para instalar as dependências.
+- Para iniciar o aplicativo, execute npm start ou yarn dev.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+# Funcionalidades 
+- Adicionar novas disciplinas.
+- Atualizar informações de disciplinas existentes.
+- Excluir disciplinas.
 
-- Configure the top-level `parserOptions` property like this:
+# Layout
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+# Página vazia
+  ![Web1](https://github.com/darlanbbs/Front-End-Desafio/blob/desafio-Darlan_Bomfim/layout/page1Nothing.png)
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+# Criar Card
+  ![Web1](https://github.com/darlanbbs/Front-End-Desafio/blob/desafio-Darlan_Bomfim/layout/criarCard.png)
+
+# Se a nota for maior que 10 e menor que 0
+  ![Web1](https://github.com/darlanbbs/Front-End-Desafio/blob/desafio-Darlan_Bomfim/layout/notaInvalida.png)
+
+# Se ja tiver a disciplina no mesmo bimestre
+
+![Web1](https://github.com/darlanbbs/Front-End-Desafio/blob/desafio-Darlan_Bomfim/layout/disciplinaExist.png)
+
+# Editar a nota de uma card
+
+![Web1](https://github.com/darlanbbs/Front-End-Desafio/blob/desafio-Darlan_Bomfim/layout/editNote.png)
